@@ -1,0 +1,18 @@
+.form__button-submit {
+  width: 358px;
+  height: 50px;
+  background-color: #fff;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.21;
+  margin: 186px auto 0;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.form__button-submit:hover {
+  opacity: 0.85;
+  transition: opacity 0.4s linear;
+}

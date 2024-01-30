@@ -1,0 +1,9 @@
+.form__link {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.21;
+  text-decoration: none;
+  color: #fff;
+  margin: 15px auto;
+}
