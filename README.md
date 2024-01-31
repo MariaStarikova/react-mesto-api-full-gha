@@ -5,12 +5,12 @@
   
 Пожалуйста, прикрепите в это описание ссылку на сайт, размещенный на Яндекс.Облаке.
 
-Адрес репозитория: https://github.com/...
+Адрес репозитория: https://github.com/MariaStarikova/react-mesto-api-full-gha.git
 
 ## Ссылки на проект
 
-IP-адрес x.x.x.x
+IP-адрес 158.160.134.189
 
-Frontend https://...
+Frontend https://mstar.students.nomoredomainsmonster.ru
 
-Backend https://...
+Backend https://api.mstar.students.nomoredomainsmonster.ru
