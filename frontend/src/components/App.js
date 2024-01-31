@@ -32,38 +32,37 @@ function App() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log("useEffect token исполняется");
-    console.log(localStorage);
     const token = localStorage.getItem('jwt');
-    console.log("token в useEffect", token);
     if (token) {
       auth
-        .checkToken(token) 
-        .then(res => { 
-          if (res) { 
-            setEmail(res.data.email); 
-            setLoggedIn(true); 
-            navigate('/', { replace: true }); 
-          } 
-        }) 
-        .catch(err => { 
-          console.error(err); 
-          localStorage.clear(); 
-        }); 
-    } 
-  }, [navigate]); 
+        .checkToken(token) //это работает
+        .then(res => {
+          if (res.data) {
+            setEmail(res.data.email);
+            setLoggedIn(true);
+            navigate('/', { replace: true });
+          }
+        })
+        .catch(err => {
+          console.error(err);
+          localStorage.clear();
+        });
+    }
+  }, [navigate]);
 
   useEffect(() => {
     if (loggedIn) {
+      //здесь ломается передача токена
       Promise.all([api.getInfoUser(), api.getInitialCards()])
         .then(([userInfo, cardsData]) => {
           setCurrentUser({
-            name: userInfo.name,
-            about: userInfo.about,
-            avatar: userInfo.avatar,
-            id: userInfo._id
+            name: userInfo.data.name,
+            about: userInfo.data.about,
+            avatar: userInfo.data.avatar,
+            id: userInfo.data._id
           });
-          setCards(cardsData);
+          setCards(cardsData.data);
+          console.log("cardsData", cardsData.data);
         })
         .catch(error => {
           console.error(`Ошибка при получении данных: ${error}`);
@@ -75,7 +74,6 @@ function App() {
     auth
       .register(email, password)
       .then(() => {
-        console.log('handleRegister email:', email);
         setIsRegisterSuccess(true);
         navigate('/sign-in', { replace: true });
       })
@@ -88,83 +86,27 @@ function App() {
       });
   }
 
-  //  function handleLogin(email, password) {
-  //   try {
-  //     const data = auth.authorize(email, password);
-  //     console.log('handleLogin email and token:', email, data.token);
-
-  //     if (data.token) {
-  //       localStorage.setItem('token', data.token);
-  //       setEmail(email);
-  //       setLoggedIn(true);
-  //       navigate('/', { replace: true });
-  //     }
-  //   } catch (err) {
-  //       console.log(err);
-  //       setIsRegisterSuccess(false);
-  //       setIsInfoTooltipOpen(true);
-  //   }
-  //  }
-
-  // function handleLogin({ email, password }) {
-
-  //   const data = auth.authorize(email, password);
-  //   console.log("data.token:", data.token);
-  //   // auth
-  //   //   .authorize(email, password)
-  //   data
-  //     .then(res => {
-  //       return res.json;
-  //     })
-  //     .then(res => {
-  //       // if (res.token) {
-  //       //   console.log('handleLogin email:', email, res.token);
-  //       //   localStorage.setItem("jwt", res.token);
-  //       //   setEmail(`${email}`);
-  //       //   setLoggedIn(true);
-  //       //   navigate("/", { replace: true });
-  //       // }
-  //       // console.log('handleLogin email:', email, res.token);
-  //       // localStorage.setItem('jwt', res.token);
-  //       // setEmail(email);
-  //       // setLoggedIn(true);
-  //       // navigate('/', { replace: true })
-  //       try {
-  //         console.log('handleLogin email:', email, res.token);
-  //         localStorage.setItem('jwt', res.token);
-  //         setEmail(email);
-  //         setLoggedIn(true);
-  //         navigate('/', { replace: true });
-  //       } catch (error) {
-  //         console.error('Error in handleLogin:', error);
-  //       }
-  //     })
-  //     .catch(err => {
-  //       console.log(err);
-  //       setIsRegisterSuccess(false);
-  //       setIsInfoTooltipOpen(true);
-  //     });
-  // }
-
-  function handleLogin({ email, password }) { 
-    auth 
-      .authorize(email, password) 
-      .then(res => { 
-        localStorage.setItem('jwt', res.token); 
-        setEmail(email); 
-        console.log('email:', email); 
-        setLoggedIn(true); 
-        navigate('/', { replace: true }); 
-      }) 
-      .catch(err => { 
-        console.log(err); 
-        setIsRegisterSuccess(false); 
-        setIsInfoTooltipOpen(true); 
-      }); 
-  } 
+  function handleLogin({ password, email }) {
+    auth
+      .authorize(password, email)
+      .then(res => {
+        localStorage.setItem('jwt', res.token);
+        setEmail(email);
+        // console.log('email:', email);
+        setLoggedIn(true);
+        navigate('/', { replace: true });
+      })
+      .catch(err => {
+        console.log(err);
+        setIsRegisterSuccess(false);
+        setIsInfoTooltipOpen(true);
+      });
+  }
 
   function handleCardLike(card) {
-    const isLiked = card.likes.some(i => i._id === currentUser.id);
+    // const isLiked = card.likes.some(i => i._id === currentUser.id);
+    const isLiked = card.likes.some((id) => id === currentUser.id);
+    console.log(isLiked, "isLiked from handleCardLike");
 
     if (!isLiked) {
       api
@@ -266,11 +208,27 @@ function App() {
       });
   }
 
+  // function handleAddPlaceSubmit(card) {
+  //   api
+  //     .addNewCard(card)
+  //     .then(newCard => {
+  //       setCards([newCard, ...cards]);
+  //       closeAllPopups();
+  //     })
+  //     .catch(err => console.log(err));
+  // }
+
   function handleAddPlaceSubmit(card) {
     api
       .addNewCard(card)
       .then(newCard => {
-        setCards([newCard, ...cards]);
+        setCards(cards => {
+          if (!Array.isArray(cards)) {
+            console.error('cards is not an array:', cards);
+            return [newCard];
+          }
+          return [newCard, ...cards];
+        });
         closeAllPopups();
       })
       .catch(err => console.log(err));

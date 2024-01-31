@@ -5,22 +5,31 @@ export class Api {
   }
 
   getInitialCards() {
+    const jwt = localStorage.getItem("jwt");
     return fetch(`${this.baseUrl}/cards`, {
-      headers: this.headers
+      headers: {
+        Authorization: `Bearer ${jwt}`,
+        'Content-Type': 'application/json'
+      },
     }).then(this._checkResponse);
   }
 
   getInfoUser() {
+    const jwt = localStorage.getItem("jwt");
     return fetch(`${this.baseUrl}/users/me`, {
-      headers: this.headers
+      headers: {
+        Authorization: `Bearer ${jwt}`,
+        'Content-Type': 'application/json'
+      },
     }).then(this._checkResponse);
   }
 
   updateUserInfo(userData) {
+    const jwt = localStorage.getItem("jwt");
     return fetch(`${this.baseUrl}/users/me`, {
       method: 'PATCH',
       headers: {
-        authorization: this.headers.authorization,
+        Authorization: `Bearer ${jwt}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(userData)
@@ -28,10 +37,11 @@ export class Api {
   }
 
   addNewCard(newCardData) {
+    const jwt = localStorage.getItem("jwt");
     return fetch(`${this.baseUrl}/cards`, {
       method: 'POST',
       headers: {
-        authorization: this.headers.authorization,
+        Authorization: `Bearer ${jwt}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
@@ -42,36 +52,42 @@ export class Api {
   }
 
   addLike(cardId) {
+    const jwt = localStorage.getItem("jwt");
     return fetch(`${this.baseUrl}/cards/${cardId}/likes`, {
       method: 'PUT',
       headers: {
-        authorization: this.headers.authorization
+        Authorization: `Bearer ${jwt}`
       }
     }).then(this._checkResponse);
   }
 
   removeLike(cardId) {
+    const jwt = localStorage.getItem("jwt");
     return fetch(`${this.baseUrl}/cards/${cardId}/likes`, {
       method: 'DELETE',
       headers: {
-        authorization: this.headers.authorization
+        Authorization: `Bearer ${jwt}`
       }
     }).then(this._checkResponse);
   }
 
   deleteCard(cardId) {
+    const jwt = localStorage.getItem("jwt");
     return fetch(`${this.baseUrl}/cards/${cardId}`, {
       method: 'DELETE',
       headers: {
-        authorization: this.headers.authorization
+        Authorization: `Bearer ${jwt}`
       }
     }).then(this._checkResponse);
   }
 
   updateUserAvatar(data) {
+    const jwt = localStorage.getItem("jwt");
     return fetch(`${this.baseUrl}/users/me/avatar`, {
       method: 'PATCH',
-      headers: this.headers,
+      headers: {
+        Authorization: `Bearer ${jwt}`
+      },
       body: JSON.stringify({
         avatar: data.avatar
       })
@@ -87,9 +103,9 @@ export class Api {
 }
 
 export const api = new Api({
-  // baseUrl: 'https://api.mstar.students.nomoredomainsmonster.ru',
   baseUrl: 'http://localhost:3000',
   headers: {
+    // authorization: '73e5a98c-079b-4b9e-b964-5323cdfb16c2',
     'Content-Type': 'application/json'
   }
 });
