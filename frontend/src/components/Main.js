@@ -3,8 +3,7 @@ import Card from './Card';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
 function Main(props) {
-  const cards = props.cards || [];
-  console.log(cards, "cards");
+  const cards = props.cards;
   const currentUser = React.useContext(CurrentUserContext);
 
   return (
@@ -55,17 +54,15 @@ function Main(props) {
               />
             </li>
           ))} */}
-          {Array.isArray(cards) && cards.map(card => (
-            
-  <li key={card._id}>
-    <Card
-      card={card}
-      onCardClick={props.onCardClick}
-      onCardLike={props.onCardLike}
-      onDeleteClick={props.onDeleteClick}
-    />
-  </li>
-))}
+          {cards.map(card => (
+              <Card
+                key={card._id}
+                card={card}
+                onCardClick={props.onCardClick}
+                onCardLike={props.onCardLike}
+                onDeleteClick={props.onDeleteClick}
+              />
+            ))}
         </ul>
       </section>
     </main>

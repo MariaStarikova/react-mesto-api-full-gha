@@ -24,7 +24,7 @@ const userSchema = new mongoose.Schema(
       default: "https://pictures.s3.yandex.net/resources/jacques-cousteau_1604399756.png",
       validate: {
         validator(avatar) {
-          return /^https?:\/\/[-a-zA-Z0-9@:%._\\+~#?&//=]+\.[a-z]{2,6}[-a-zA-Z0-9@:%._\\+~#?&//=]*$/.test(avatar);
+          return /http[s]?:\/\/(www.)?[\S]+\.[a-z]+[\S]*/gi.test(avatar);
         },
         message: "Некорректный формат URL",
       },

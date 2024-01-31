@@ -62,7 +62,6 @@ function App() {
             id: userInfo.data._id
           });
           setCards(cardsData.data);
-          console.log("cardsData", cardsData.data);
         })
         .catch(error => {
           console.error(`Ошибка при получении данных: ${error}`);
@@ -92,7 +91,6 @@ function App() {
       .then(res => {
         localStorage.setItem('jwt', res.token);
         setEmail(email);
-        // console.log('email:', email);
         setLoggedIn(true);
         navigate('/', { replace: true });
       })
@@ -104,18 +102,16 @@ function App() {
   }
 
   function handleCardLike(card) {
-    // const isLiked = card.likes.some(i => i._id === currentUser.id);
     const isLiked = card.likes.some((id) => id === currentUser.id);
-    console.log(isLiked, "isLiked from handleCardLike");
-
     if (!isLiked) {
       api
         .addLike(card._id)
         .then(newCard => {
-          setCards(state => state.map(c => (c._id === card._id ? newCard : c)));
+          setCards((state) => state.map((c) => (c._id === card._id ? newCard : c)));
         })
         .catch(err => {
           console.error(`Ошибка: ${err}`);
+          console.log('card like error')
         });
       return;
     } else {
@@ -183,8 +179,8 @@ function App() {
       .then(updatedFields => {
         setCurrentUser(prevUser => ({
           ...prevUser,
-          name: updatedFields.name || prevUser.name,
-          about: updatedFields.about || prevUser.about
+          name: updatedFields.data.name || prevUser.name,
+          about: updatedFields.data.about || prevUser.about
         }));
         closeAllPopups();
       })
@@ -199,7 +195,7 @@ function App() {
       .then(updatedData => {
         setCurrentUser(prevUser => ({
           ...prevUser,
-          avatar: updatedData.avatar || prevUser.avatar
+          avatar: updatedData.data.avatar || prevUser.avatar
         }));
         closeAllPopups();
       })
@@ -207,16 +203,6 @@ function App() {
         console.error(`Ошибка: ${err}`);
       });
   }
-
-  // function handleAddPlaceSubmit(card) {
-  //   api
-  //     .addNewCard(card)
-  //     .then(newCard => {
-  //       setCards([newCard, ...cards]);
-  //       closeAllPopups();
-  //     })
-  //     .catch(err => console.log(err));
-  // }
 
   function handleAddPlaceSubmit(card) {
     api
