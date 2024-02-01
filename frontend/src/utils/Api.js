@@ -56,6 +56,8 @@ export class Api {
     return fetch(`${this.baseUrl}/cards/${cardId}/likes`, {
       method: 'PUT',
       headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
         Authorization: `Bearer ${jwt}`
       }
     }).then(this._checkResponse);
