@@ -34,7 +34,7 @@ app.options("*", cors());
 // "https://api.mstar.students.nomoredomainsmonster.ru",
 // "http://localhost:3000",
 // "http://localhost:3004"], credentials: true }));
-app.use(cors);
+app.use(cors());
 // app.use(cors(allowedCors));
 app.use(helmet());
 
