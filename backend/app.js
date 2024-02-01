@@ -22,8 +22,18 @@ const allowedCors = [
   "http://localhost:3004"
 ];
 
-app.options("*", cors(allowedCors));
-app.use(cors(allowedCors));
+const corsOptionsDelegate = function (req, callback) {
+  let corsOptions;
+  if (allowedCors.indexOf(req.header("Origin")) !== -1) {
+    corsOptions = { origin: true } // reflect (enable) the requested origin in the CORS response
+  } else {
+    corsOptions = { origin: false } // disable CORS for this request
+  }
+  callback(null, corsOptions) // callback expects two parameters: error and options
+}
+
+app.options("*", cors(corsOptionsDelegate));
+app.use(cors(corsOptionsDelegate));
 app.use(helmet());
 
 app.use(express.json());
