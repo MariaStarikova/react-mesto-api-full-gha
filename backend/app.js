@@ -19,8 +19,7 @@ const allowedCors = [
   "http://api.mstar.students.nomoredomainsmonster.ru",
   "https://api.mstar.students.nomoredomainsmonster.ru",
   "http://localhost:3000",
-  "http://localhost:3004",
-  "https://localhost:3000"
+  "http://localhost:3004"
 ];
 
 app.options("*", cors(allowedCors));

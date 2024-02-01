@@ -1,4 +1,5 @@
-export const BASE_URL = 'http://localhost:3000';
+// export const BASE_URL = 'http://localhost:3000';
+export const BASE_URL = 'https://api.mstar.students.nomoredomainsmonster.ru';
 
 export const register = (email, password) => {
   return fetch(`${BASE_URL}/signup`, {
