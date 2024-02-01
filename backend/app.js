@@ -22,6 +22,12 @@ const allowedCors = [
   "http://localhost:3004"
 ];
 
+const corsOptions = {
+  origin: allowedCors,
+};
+
+app.use(cors(corsOptions));
+
 app.options("*", cors(allowedCors));
 app.use(cors(allowedCors));
 app.use(helmet());
