@@ -9,7 +9,7 @@
 
 ## Ссылки на проект
 
-IP-адрес <158.160.134.189>
+IP 158.160.134.189
 
 Frontend https://mstar.students.nomoredomainsmonster.ru
 
