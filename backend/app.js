@@ -24,12 +24,12 @@ const allowedCors = [
 
 const corsOptions = {
   origin: allowedCors,
+  allowedHeaders: ["Content-Type"]
 };
 
-app.use(cors(corsOptions));
-
 app.options("*", cors(allowedCors));
-app.use(cors(allowedCors));
+app.use(cors(corsOptions));
+// app.use(cors(allowedCors));
 app.use(helmet());
 
 app.use(express.json());
