@@ -13,23 +13,17 @@ const { requestLogger, errorLogger } = require("./middlewares/logger");
 
 const app = express();
 
-// const allowedCors = [
-//   "http://mstar.students.nomoredomainsmonster.ru",
-//   "https://mstar.students.nomoredomainsmonster.ru",
-//   "http://api.mstar.students.nomoredomainsmonster.ru",
-//   "https://api.mstar.students.nomoredomainsmonster.ru",
-//   "http://localhost:3000",
-//   "http://localhost:3004"
-// ];
+const allowedCors = [
+  "http://mstar.students.nomoredomainsmonster.ru",
+  "https://mstar.students.nomoredomainsmonster.ru",
+  "http://api.mstar.students.nomoredomainsmonster.ru",
+  "https://api.mstar.students.nomoredomainsmonster.ru",
+  "http://localhost:3000",
+  "http://localhost:3004"
+];
 
-app.options("*", cors());
-// app.use(cors({ origin: ["http://mstar.students.nomoredomainsmonster.ru",
-// "https://mstar.students.nomoredomainsmonster.ru",
-// "http://api.mstar.students.nomoredomainsmonster.ru",
-// "https://api.mstar.students.nomoredomainsmonster.ru",
-// "http://localhost:3000",
-// "http://localhost:3004"], credentials: true }));
-app.use(cors());
+app.options("*", cors(allowedCors));
+app.use(cors(allowedCors));
 app.use(helmet());
 
 app.use(express.json());
