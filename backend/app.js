@@ -28,7 +28,13 @@ const app = express();
 // };
 
 // app.options("*", cors(allowedCors));
-app.use(cors);
+app.use(cors({ origin: ["http://mstar.students.nomoredomainsmonster.ru",
+"https://mstar.students.nomoredomainsmonster.ru",
+"http://api.mstar.students.nomoredomainsmonster.ru",
+"https://api.mstar.students.nomoredomainsmonster.ru",
+"http://localhost:3000",
+"http://localhost:3004"], credentials: true }));
+// app.use(cors);
 // app.use(cors(allowedCors));
 app.use(helmet());
 
