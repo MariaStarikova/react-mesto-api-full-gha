@@ -22,11 +22,6 @@ const app = express();
 //   "http://localhost:3004"
 // ];
 
-// const corsOptions = {
-//   origin: allowedCors,
-//   allowedHeaders: ["Content-Type"]
-// };
-
 app.options("*", cors());
 // app.use(cors({ origin: ["http://mstar.students.nomoredomainsmonster.ru",
 // "https://mstar.students.nomoredomainsmonster.ru",
@@ -35,7 +30,6 @@ app.options("*", cors());
 // "http://localhost:3000",
 // "http://localhost:3004"], credentials: true }));
 app.use(cors());
-// app.use(cors(allowedCors));
 app.use(helmet());
 
 app.use(express.json());
