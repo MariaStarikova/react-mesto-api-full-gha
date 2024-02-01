@@ -13,27 +13,28 @@ const { requestLogger, errorLogger } = require("./middlewares/logger");
 
 const app = express();
 
-const allowedCors = [
-  "http://mstar.students.nomoredomainsmonster.ru",
+const allowedCors = {
+  origin: [
+    "http://mstar.students.nomoredomainsmonster.ru",
   "https://mstar.students.nomoredomainsmonster.ru",
   "http://api.mstar.students.nomoredomainsmonster.ru",
   "https://api.mstar.students.nomoredomainsmonster.ru",
   "http://localhost:3000",
   "http://localhost:3004"
-];
+  ],
+};
+// const corsOptionsDelegate = function (req, callback) {
+//   let corsOptions;
+//   if (allowedCors.indexOf(req.header("Origin")) !== -1) {
+//     corsOptions = { origin: true } // reflect (enable) the requested origin in the CORS response
+//   } else {
+//     corsOptions = { origin: false } // disable CORS for this request
+//   }
+//   callback(null, corsOptions) // callback expects two parameters: error and options
+// }
 
-const corsOptionsDelegate = function (req, callback) {
-  let corsOptions;
-  if (allowedCors.indexOf(req.header("Origin")) !== -1) {
-    corsOptions = { origin: true } // reflect (enable) the requested origin in the CORS response
-  } else {
-    corsOptions = { origin: false } // disable CORS for this request
-  }
-  callback(null, corsOptions) // callback expects two parameters: error and options
-}
-
-app.options("*", cors(corsOptionsDelegate));
-app.use(cors(corsOptionsDelegate));
+app.options("*", cors(allowedCors));
+app.use(cors(allowedCors));
 app.use(helmet());
 
 app.use(express.json());
