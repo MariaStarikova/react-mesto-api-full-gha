@@ -213,7 +213,7 @@ function App() {
             console.error('cards is not an array:', cards);
             return [newCard];
           }
-          return [newCard, ...cards];
+          return [newCard.data, ...cards];
         });
         closeAllPopups();
       })

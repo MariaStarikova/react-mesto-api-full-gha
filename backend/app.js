@@ -14,12 +14,27 @@ const app = express();
 
 const allowedCors = {
   origin: [
-  "http://mstar.students.nomoredomainsmonster.ru",
-  "https://mstar.students.nomoredomainsmonster.ru",
-  "http://localhost:3000",
-  "http://localhost:3004"
+    "http://localhost:3000",
+    "http://localhost:3001",
+    "http://mstar.students.nomoredomainsmonster.ru",
+    "https://mstar.students.nomoredomainsmonster.ru"
   ],
+  methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
+  preflightContinue: false,
+  optionsSuccessStatus: 204,
+  allowedHeaders: ["Content-Type", "origin", "Authorization"],
+  credentials: true,
 };
+
+// const allowedCors = {
+//   origin: [
+//   "http://mstar.students.nomoredomainsmonster.ru",
+//   "https://mstar.students.nomoredomainsmonster.ru",
+//   "http://localhost:3000",
+//   "http://localhost:3004",
+//   "http://localhost:3001"
+//   ],
+// };
 
 app.use(cors(allowedCors));
 app.use(helmet());
@@ -29,11 +44,6 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(requestLogger);
 
-app.get("/crash-test", () => {
-  setTimeout(() => {
-    throw new Error("Сервер сейчас упадёт");
-  }, 0);
-});
 app.use(routers);
 
 app.use(errorLogger);

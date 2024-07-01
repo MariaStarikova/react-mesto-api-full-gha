@@ -106,16 +106,16 @@ export class Api {
   }
 }
 
-// export const api = new Api({
-//   baseUrl: 'http://localhost:3000',
-//   headers: {
-//     'Content-Type': 'application/json'
-//   }
-// });
-
 export const api = new Api({
-  baseUrl: 'https://api.mstar.students.nomoredomainsmonster.ru',
+  baseUrl: 'http://localhost:3000',
   headers: {
     'Content-Type': 'application/json'
   }
 });
+
+// export const api = new Api({
+//   baseUrl: 'https://api.mstar.students.nomoredomainsmonster.ru',
+//   headers: {
+//     'Content-Type': 'application/json'
+//   }
+// });
