@@ -81,5 +81,5 @@
 
 - [Макет в Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)
 - [Репозиторий проекта](https://github.com/MariaStarikova/react-mesto-api-full-gha)
-- [Проект на Javascript](https://mariastarikova.github.io/mesto/)
+- [Проект на Javascript на Github Pages](https://mariastarikova.github.io/mesto/)
 - [Репозиторий проекта на Javascript](https://github.com/MariaStarikova/mesto?tab=readme-ov-file)
