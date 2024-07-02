@@ -81,3 +81,6 @@
 - [Репозиторий проекта](https://github.com/MariaStarikova/react-mesto-api-full-gha)
 - [Проект на Javascript на Github Pages](https://mariastarikova.github.io/mesto/)
 - [Репозиторий проекта на Javascript](https://github.com/MariaStarikova/mesto?tab=readme-ov-file)
+
+
+
