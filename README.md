@@ -1,5 +1,3 @@
-[![Статус тестов](../../actions/workflows/tests.yml/badge.svg)](../../actions/workflows/tests.yml)
-
 # Проект: Место - учебная проектная работа 
 
 ![Скриншот](https://github.com/MariaStarikova/react-mesto-api-full-gha/assets/128027402/4a8c9195-717e-48a2-b85c-ad2e1cabfe63)
