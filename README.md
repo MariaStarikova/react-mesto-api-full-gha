@@ -1,24 +1,12 @@
 [![Статус тестов](../../actions/workflows/tests.yml/badge.svg)](../../actions/workflows/tests.yml)
 
-# react-mesto-api-full
-Репозиторий для приложения проекта `Mesto`, включающий фронтенд и бэкенд части приложения со следующими возможностями: авторизации и регистрации пользователей, операции с карточками и пользователями. 
-
-## Ссылки на проект
-
-IP 158.160.134.189
-
-Frontend https://mstar.students.nomoredomainsmonster.ru
-
-Backend https://api.mstar.students.nomoredomainsmonster.ru
-
-
 # Проект: Место - учебная проектная работа 
 
 ![Скриншот](https://github.com/MariaStarikova/react-mesto-api-full-gha/assets/128027402/4a8c9195-717e-48a2-b85c-ad2e1cabfe63)
 
 ## Описание проекта
 
-Проект **Mesto** - небольшая сервис, где пользователь может добавлять фотографии. Также можно посмотреть фотографии, размещённые другими пользователями. Кроме того, можно поставить или снять лайки на любым фотографиях и увидеть количество лайков на каждом фото. А также можно открыть фото в полном масштабе, нажав на него.
+Проект **Mesto** - небольшой сервис, где пользователь может добавлять фотографии. Также можно посмотреть фотографии, размещённые другими пользователями. Кроме того, можно поставить или снять лайки на любым фотографиях и увидеть количество лайков на каждом фото. А также можно открыть фото в полном масштабе, нажав на него.
 
 Репозиторий проекта **Mesto** включает фронтенд и бэкенд части приложения: бэкенд расположен в директории `backend/`, а фронтенд - в `frontend/`.
 
@@ -93,5 +81,5 @@ Backend https://api.mstar.students.nomoredomainsmonster.ru
 
 - [Макет в Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)
 - [Репозиторий проекта](https://github.com/MariaStarikova/react-mesto-api-full-gha)
-<!-- - [Деплой фронтенд-части приложения](https://mesto2023.students.nomoredomains.monster)
-- [Деплой бэкенд-части приложения](https://apii.mesto2023.students.nomoredomains.monster) -->
+- [Проект на Javascript](https://mariastarikova.github.io/mesto/)
+- [Репозиторий проекта на Javascript](https://github.com/MariaStarikova/mesto?tab=readme-ov-file)
